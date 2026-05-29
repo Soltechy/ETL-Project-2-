@@ -1,0 +1,112 @@
+GAS CONSUMPTION INTELLIGENCE ETL
+
+You are to build a complete ETL pipeline using simulated Gasleet customer and cylinder data.
+
+This project tests your ability to:
+•	Work with structured datasets (SQL/CSV)
+•	Clean and transform data
+•	Perform analysis (EDA)
+•	Generate business insights
+•	Implement logging
+
+DATA SOURCE
+Use any of the following:
+•	A provided CSV
+Sample Data Fields:
+•	customer_id
+•	name
+•	cylinder_capacity
+•	last_seen_weight
+•	tare_weight
+•	last_refill_date
+•	created_at
+
+INSTRUCTIONS
+SECTION A: DATA EXTRACTION
+1.	Use Python to load the dataset (CSV).
+2.	Check if the dataset loads successfully.
+3.	Print the first 5 rows.
+4.	Display dataset shape (rows, columns).
+
+
+SECTION B: DATA TRANSFORMATION
+Using Pandas:
+1.	Create a new column:  gas_remaining = last_seen_weight - tare_weight
+2.	Create: tank_percentage = (gas_remaining / cylinder_capacity) * 100
+3.	Handle missing or invalid values:
+o	Replace negatives with 0
+o	Cap percentage at 100
+4.	Convert all numeric columns to correct types.
+
+
+SECTION C: FEATURE ENGINEERING
+Create the following:
+1. Gas Level Category
+Classify:
+•	“Low” → < 20%
+•	“Medium” → 20% – 50%
+•	“High” → > 50%
+2. Refill Urgency Score
+Create a score using:
+•	Low tank → high urgency
+•	Older refill date → higher urgency
+Example: urgency_score = (100 - tank_percentage) + days_since_last_refill
+3. Risk Indicator
+Create:
+•	True → if tank < 20%
+•	False otherwise
+
+
+SECTION D: EXPLORATORY DATA ANALYSIS
+Answer using code:
+1.	How many customers are in the dataset?
+2.	Top 5 customers with lowest tank levels
+3.	Top 5 customers with highest urgency score
+4.	Distribution of gas level categories
+5.	Percentage of customers at risk (Low gas)
+6.	Average tank percentage across all users
+
+
+SECTION E: VISUALIZATION
+Using Matplotlib:
+1.	Bar chart of Gas Level Categories
+2.	Bar chart of Top 10 highest urgency customers
+3.	Pie chart of Risk vs Safe customers
+Each chart must include:
+•	Title
+•	Axis labels
+
+
+SECTION F: DATA LOADING
+Save the processed dataset as: gasleet_customer_insights.csv
+
+
+SECTION G: LOGGING
+Use Python logging to:
+1.	Log pipeline start
+2.	Log data load success/failure
+3.	Log transformation completion
+4.	Log file save success
+Save logs as: gasleet_pipeline.log
+
+
+SECTION H: INSIGHT REPORT
+Write a short report (5–10 lines):
+1.	What percentage of customers are close to running out of gas?
+2.	What pattern do you observe in refill behavior?
+3.	Which customers should be prioritized for notifications?
+4.	What business action would you recommend?
+
+SUBMISSION REQUIREMENTS
+Submit:
+•	Python script (.py file)
+•	gasleet_customer_insights.csv
+•	gasleet_pipeline.log
+•	Insight report (PDF or text)
+
+
+BONUS
+Add:
+•	Predict “days to empty”
+•	Trigger notification list (customers < 15%)
+•	Store results in a database
